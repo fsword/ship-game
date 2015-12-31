@@ -36,6 +36,7 @@ class Ship
       self.cells.update [row, col] => true
     end
     matrix.update(Util.reverse m) if vertical
+    $logger.info "[ship]assign matrix: #{cells.keys}"
   end
 
   def shot_at row, col

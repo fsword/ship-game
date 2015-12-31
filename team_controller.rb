@@ -8,6 +8,7 @@ class TeamController
     m = Matrix.new
     self.matrix = MatrixDelegator.new m
     self.team = Team.new
+    $logger.info "[team_controller] #{label} bind team"
     self.team.bind m
 
     @listeners = []
