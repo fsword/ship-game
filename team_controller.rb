@@ -37,7 +37,7 @@ class TeamController
 
   def paint_matrix
     # title
-    print "  ", 5.times.map{|i| " #{i+1} "}.join, "\n"
+    print "   ", 5.times.map{|i| " #{i+1} "}.join(' '), "\n"
     # body
     5.times do |i|
       paint_matrix_border
