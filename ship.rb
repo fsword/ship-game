@@ -25,13 +25,13 @@ class Ship
       v.length.times do |offset|
         if index = v[offset..-1].index(value)
           candidate = size.times.map do |i|
-            [row, index + i]
+            [row, offset + index + i]
           end
           candidates << candidate
         end
       end
     end
-    candidates[(rand * candidates.size).to_i].each do |(row,col)|
+    candidates[(rand * candidates.size).to_i - 1].each do |(row,col)|
       m[row][col] = 1
       self.cells.update [row, col] => true
     end
