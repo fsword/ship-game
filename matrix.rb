@@ -4,7 +4,7 @@ class Matrix
   end
 
   def default_init
-    [[0] * 5 ] * 5
+    Array.new 5, Array.new(5,0)
   end
 
   def [] row

@@ -2,14 +2,13 @@ require './util'
 
 class Ship
 
-  attr_accessor :size, :cells, :status, :label
+  attr_accessor :size, :cells, :label
 
   # matrix: [ [ 0,0,1 ], [ 1,0,1 ], [ 0,0,0 ] ]
   def initialize size, label
     self.size  = size
     self.label = label
     self.cells = {}
-    self.status = :Alive
   end
 
   def assign matrix
@@ -23,9 +22,9 @@ class Ship
     m.size.times do |row|
       v = m[row].join
       v.length.times do |offset|
-        if index = v[offset..-1].index(value)
+        if v[offset..-1].start_with?(value)
           candidate = size.times.map do |i|
-            [row, offset + index + i]
+            [row, offset + i]
           end
           candidates << candidate
         end

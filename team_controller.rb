@@ -61,5 +61,6 @@ class TeamController
       "#{label.capitalize}: #{status.capitalize}"
     end.join(", ")
     puts result
+    puts 'win!' unless team.ships_status.map{|(_x,y)| y}.include? 'alive'
   end
 end
