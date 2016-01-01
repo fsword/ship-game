@@ -21,6 +21,17 @@ class TeamController
     nil
   end
 
+  def random_shot
+    @shoted ||= 5.times.map{ |r| 5.times.map{|c| {r => c} } }.
+      flatten.
+      map{|e| [e.keys.first, e.values.first]}.
+      shuffle
+    row, col = @shoted.pop
+    shot_at row, col
+  end
+
+  alias fire random_shot
+
   def add_listener listener
     @listeners << listener
   end
@@ -61,6 +72,10 @@ class TeamController
       "#{label.capitalize}: #{status.capitalize}"
     end.join(", ")
     puts result
-    puts 'win!' unless team.ships_status.map{|(_x,y)| y}.include? 'alive'
+    puts 'win!' if win?
+  end
+
+  def win?
+    not team.ships_status.map{|(_x,y)| y}.include? 'alive'
   end
 end

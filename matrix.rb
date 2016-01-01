@@ -1,10 +1,6 @@
 class Matrix
-  def initialize v = nil
-    @v = v || default_init
-  end
-
-  def default_init
-    5.times.map{ [0,0,0,0,0] }
+  def initialize
+    @v = 5.times.map{ [0,0,0,0,0] }
   end
 
   def [] row

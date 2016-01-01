@@ -8,7 +8,8 @@ $player = TeamController.new 'player'
 $computer = TeamController.new 'computer'
 
 $screen = Screen.new $player, $computer
-$player.add_listener $screen
+$player.add_listener $computer
+$computer.add_listener $screen
 
 $screen.repaint
 
@@ -18,6 +19,7 @@ Signal.trap("INT") do
 end
 
 loop do
+  $screen.check_result
   print "which cell will you want to shot? "
   if gets =~ /(\d+),(\d+)/
     row = $1.to_i - 1
