@@ -15,6 +15,7 @@ class Ship
     m = matrix.value
     value = '0' * size
     vertical = true if rand > 0.5
+    $logger.info "[ship] vertical: #{vertical}"
 
     m = Util.reverse m if vertical
 
@@ -30,11 +31,17 @@ class Ship
         end
       end
     end
-    candidates[(rand * candidates.size).to_i - 1].each do |(row,col)|
+
+    candidate = candidates[(rand * candidates.size).to_i - 1]
+    m = Util.reverse m if vertical
+
+    candidate.each do |(row,col)|
+      row, col = col, row if vertical
       m[row][col] = 1
       self.cells.update [row, col] => true
     end
-    matrix.update(Util.reverse m) if vertical
+    matrix.update(m)
+    $logger.info "[ship]assign m : #{m}"
     $logger.info "[ship]assign matrix: #{cells.keys}"
   end
 
